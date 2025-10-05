@@ -22,12 +22,14 @@ public class UIManager {
 
     public void startUI() throws Exception {
         boolean running = true;
-
-
         while (running) {
-            System.out.println("Enter file path");
-
+            System.out.println("Enter file path. ");
             String input = scanner.nextLine();
+
+            if(input.equalsIgnoreCase("Quit")){
+                break;
+            }
+
             if ((checkFolder.validPathDirectory(input))) {
                 this.fileOrganizer.folderItems(input);
             }else{
