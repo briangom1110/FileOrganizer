@@ -15,11 +15,11 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
-public class CLIHandlers {
+public class CLIHandler {
 
     Terminal terminal;
 
-    public CLIHandlers() throws Exception { 
+    public CLIHandler() throws Exception { 
 
         terminal = new DefaultTerminalFactory().createTerminal();
     }
@@ -90,7 +90,7 @@ public class CLIHandlers {
     // }
 
     public static void main(String[] args) throws Exception {
-        CLIHandlers cli = new CLIHandlers();
+        CLIHandler cli = new CLIHandler();
         cli.run();
     }
 
