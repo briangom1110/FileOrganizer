@@ -61,8 +61,7 @@ public class UIManager {
         System.out.println("\nChoose your sorting options:");
         System.out.println("1. Alphabetical order");
         System.out.println("2. By Size");
-        System.out.println("3. By date");
-        System.out.println("4. By File type");
+        System.out.println("3. By File type");
 
 //        String sortChoice=cliHandler.reader();
         String input = scanner.nextLine();
