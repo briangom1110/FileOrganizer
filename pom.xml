@@ -20,4 +20,18 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <!-- Replace this with the fully qualified name of your main class -->
+                    <mainClass>com.hackuta7.CLIHandlers</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
