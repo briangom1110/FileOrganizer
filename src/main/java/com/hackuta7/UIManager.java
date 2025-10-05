@@ -1,41 +1,42 @@
 package com.hackuta7;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import com.hackuta7.logic.*;;
 
 public class UIManager{
     private MenuPrinter menuprinter;
-    private CLIHandler cliHandler;
+//    private CLIHandler cliHandler;
     private Scanner scanner;
     private CheckFolder checkFolder;
-    // private folderItems folderitems;
+    private FileOrganizer fileOrganizer;
 
     public UIManager() throws Exception{
-        this.cliHandler = new CLIHandler();
+//        this.cliHandler = new CLIHandler();
         this. menuprinter = new  MenuPrinter();
         this.scanner = new Scanner(System.in);
+        this.fileOrganizer = new FileOrganizer();
+        this.checkFolder = new CheckFolder();
     }
 
     public void startUI() throws Exception{
         boolean running = true;
         while (running){
             System.out.println("Enter file path");
-            scanner.nextLine();
+
 
             String input = scanner.nextLine();
             if(checkFolder.validPathDirectory(input)){
+                this.fileOrganizer.folderItems(input);
                 continue;
             }
-            
-
 
             menuprinter.printMainMenu();
-            String choice = cliHandler.reader();
+//            String choice = cliHandler.reader();
             
-            switch (choice){
+            switch (input){
                 case "1":
                     organizeFilesOption();
-
                     break;
                 case "2":
                     System.out.println("Exiting the menu...");
@@ -55,20 +56,20 @@ public class UIManager{
         System.out.println("3. By date");
         System.out.println("4. By File type");
     
-        String sortChoice=cliHandler.reader();
-
-        switch (sortChoice){
+//        String sortChoice=cliHandler.reader();
+            String input = scanner.nextLine();
+        switch (input){
             case "1":
                 System.out.println("Sorting alphabetically");
+                this.fileOrganizer.sortByName();
                 break;
             case "2":
                 System.out.println("Sorting by size");
+                this.fileOrganizer.sortByFileSize();
                 break;
             case "3":
-                System.out.println("Sorting by date");
-                break;
-            case "4":
                 System.out.println("Sorting by filetype");
+                this.fileOrganizer.sortByFileType();
                 break;
             default:
                 System.out.println("Invalid. Returning to main menu");

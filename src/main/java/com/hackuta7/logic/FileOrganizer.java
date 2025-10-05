@@ -8,9 +8,11 @@ import java.util.stream.Stream;
 
 public class FileOrganizer {
     private List<File> content;
-    private CheckFolder checkFolder;
+    // Could add a constructor for this
+//    private CheckFolder checkFolder;
 
     public FileOrganizer() {
+
         this.content = new ArrayList<>();
     }
 
