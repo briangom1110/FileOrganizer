@@ -1,24 +1,41 @@
 package com.hackuta7;
 
+import java.util.Scanner;
+import com.hackuta7.logic.*;;
+
 public class UIManager{
     private MenuPrinter menuprinter;
     private CLIHandler cliHandler;
-    
+    private Scanner scanner;
+    private CheckFolder checkFolder;
+    // private folderItems folderitems;
 
     public UIManager() throws Exception{
         this.cliHandler = new CLIHandler();
         this. menuprinter = new  MenuPrinter();
+        this.scanner = new Scanner(System.in);
     }
 
     public void startUI() throws Exception{
         boolean running = true;
         while (running){
+            System.out.println("Enter file path");
+            scanner.nextLine();
+
+            String input = scanner.nextLine();
+            if(checkFolder.validPathDirectory(input)){
+                continue;
+            }
+            
+
+
             menuprinter.printMainMenu();
             String choice = cliHandler.reader();
             
             switch (choice){
                 case "1":
                     organizeFilesOption();
+
                     break;
                 case "2":
                     System.out.println("Exiting the menu...");
