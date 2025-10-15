@@ -89,9 +89,9 @@ public class CLIHandler {
     //     return args;
     // }
 
-    public static void main(String[] args) throws Exception {
-        CLIHandler cli = new CLIHandler();
-        cli.run();
-    }
+//    public static void main(String[] args) throws Exception {
+//        CLIHandler cli = new CLIHandler();
+//        cli.run();
+//    }
 
 }
