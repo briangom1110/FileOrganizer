@@ -3,31 +3,24 @@ package com.hackuta7;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.hackuta7.logic.*;
+import com.hackuta7.logic.*;;
 
 public class UIManager {
-
+    private MenuPrinter menuprinter;
     //    private CLIHandler cliHandler;
     private Scanner scanner;
     private CheckFolder checkFolder;
     private FileOrganizer fileOrganizer;
 
-    public UIManager() {
+    public UIManager() throws Exception {
 //        this.cliHandler = new CLIHandler();
-
+        this.menuprinter = new MenuPrinter();
         this.scanner = new Scanner(System.in);
         this.fileOrganizer = new FileOrganizer();
         this.checkFolder = new CheckFolder();
     }
 
-    public void printMainMenu(){
-        System.out.println("\n===File Organizer Menu===");
-        System.out.println("1. Organize Files");
-        System.out.println("2. Exit");
-        System.out.print("Enter your choice: ");
-    }
-
-    public void startUI(){
+    public void startUI() throws Exception {
         boolean running = true;
         while (running) {
             System.out.println("Enter file path. ");
@@ -44,7 +37,7 @@ public class UIManager {
                 continue;
             }
 
-            printMainMenu();
+            menuprinter.printMainMenu();
 //            String choice = cliHandler.reader();
             String choice = scanner.nextLine();
 
@@ -62,8 +55,6 @@ public class UIManager {
             }
         }
     }
-
-
 
     //Sorting Options
     private void organizeFilesOption() throws Exception {
