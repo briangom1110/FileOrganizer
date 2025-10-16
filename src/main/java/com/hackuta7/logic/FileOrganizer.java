@@ -8,8 +8,11 @@ import java.util.stream.Stream;
 
 public class FileOrganizer {
     private List<File> content;
+    // Could add a constructor for this
+//    private CheckFolder checkFolder;
 
     public FileOrganizer() {
+
         this.content = new ArrayList<>();
     }
 
@@ -19,6 +22,7 @@ public class FileOrganizer {
 
         if (list == null) {
             System.out.println("Empty directory;");
+            return this.content;
         }
 
         if (this.content.size() > 0) {
@@ -36,11 +40,26 @@ public class FileOrganizer {
         return this.content.stream()
                 .sorted((x, y) -> x.getName().compareToIgnoreCase(y.getName()));
     }
+    // SortByNameInPlace name is to shoq that you are modifying the existing data structure
+    // (sortByName) instead of returning a new one
+
+    public void  sortByNameInPlace(){
+        this.content = sortByName().toList();
+    }
 
     public Stream<File> sortByFileSize() {
         return this.content.stream()
-                .sorted(Comparator.comparingLong(File::length));
+                .sorted(Comparator.comparingLong(File::length).reversed());
     }
+
+    public void  sortByFileSizeInPlace(){
+        this.content = sortByFileSize().toList();
+    }
+//    public void printFileContent(){
+//        for(File file: this.content){
+//            System.out.println(file);
+//        }
+//    }
 
     public Stream<File> sortByFileType() {
         return this.content.stream()
@@ -51,7 +70,7 @@ public class FileOrganizer {
                     // Getting the postion of the last . for the filetypes
                     // For examples the . in  notes.txt
                     int position1 = filename1.lastIndexOf('.');
-                    int position2 = filename1.lastIndexOf('.');
+                    int position2 = filename2.lastIndexOf('.');
 
                     // Holds the name of the extension as a string
                     String extension1;
@@ -70,12 +89,57 @@ public class FileOrganizer {
                     if (position2 == -1) {
                         extension2 = "";
                     } else {
-                        extension2 = filename1.substring(position1 + 1).toLowerCase();
+                        extension2 = filename2.substring(position2+ 1).toLowerCase();
                     }
                     // Comparing the types of both extensions
                     return extension1.compareToIgnoreCase(extension2);
                 });
     }
+    public void  sortByFileTypeInPlace(){
+        this.content = sortByFileType().toList();
+    }
+
+
+    /* Ai generated print content method. Prints out the contents of the folder/ Specifies the content
+    */
+    public void printFileContent() {
+        if (content.isEmpty()) {
+            System.out.println("No files to display.");
+            return;
+        }
+
+        System.out.println("\n📁 Files in directory:\n");
+
+        for (File file : content) {
+            String name = file.getName();
+            String type;
+            long sizeKB;
+
+            if (file.isDirectory()) {
+                type = "<DIR>";
+                sizeKB = 0;
+            } else {
+                type = getExtension(name);
+                sizeKB = file.length() / 1024;
+            }
+
+            String modified;
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            modified = sdf.format(new java.util.Date(file.lastModified()));
+
+            System.out.printf("%-30s | %-8s | %8d KB | %s%n",
+                    name, type, sizeKB, modified);
+        }
+    }
+
+    private String getExtension(String filename) {
+        int dotIndex = filename.lastIndexOf('.');
+        if (dotIndex == -1) {
+            return "N/A";
+        }
+        return filename.substring(dotIndex + 1).toUpperCase();
+    }
+
 
 
 }
