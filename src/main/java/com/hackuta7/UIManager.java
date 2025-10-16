@@ -12,7 +12,7 @@ public class UIManager {
     private CheckFolder checkFolder;
     private FileOrganizer fileOrganizer;
 
-    public UIManager() throws Exception {
+    public UIManager() {
 //        this.cliHandler = new CLIHandler();
         this.menuprinter = new MenuPrinter();
         this.scanner = new Scanner(System.in);
@@ -20,7 +20,7 @@ public class UIManager {
         this.checkFolder = new CheckFolder();
     }
 
-    public void startUI() throws Exception {
+    public void startUI() {
         boolean running = true;
         while (running) {
             System.out.println("Enter file path. ");
@@ -57,7 +57,7 @@ public class UIManager {
     }
 
     //Sorting Options
-    private void organizeFilesOption() throws Exception {
+    private void organizeFilesOption() {
         System.out.println("\nChoose your sorting options:");
         System.out.println("1. Alphabetical order");
         System.out.println("2. By Size");
